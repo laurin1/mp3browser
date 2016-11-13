@@ -10,28 +10,25 @@ class Index{
 
 		$sReturn = "<!DOCTYPE html><head></head><html><body>";
 
+		if($_GET["src"])
+			$sReturn .=
+				$this->getAudioControls($_GET["src"]);
+
 		$oDirectory = new \DirectoryIterator("D:/AA Talks - MP3");
 
 		foreach($oDirectory as $oFile){
 
 			if(
 				$oFile->isDir() ||
-				$oFile->isDot()
+				$oFile->isDot() ||
+				$oFile->getExtension() === "nra"
 			)
 				continue;
 
 			$sSrc = "/mp3files/".$oFile->getFilename();
 
 			$sReturn .=
-				'
-<div style="margin-top: 20px;">
-	<audio controls style="height: 100px;">
-		<source src="'.$sSrc.'" type="audio/mpeg">
-	</audio>
-</div>
-<br />';
-
-			break;
+				'<a href="'.$_SERVER["PHP_SELF"].'?src='.$sSrc.'">'.$oFile->getFilename().'</a><br />';
 
 		}
 
@@ -40,4 +37,25 @@ class Index{
 		return $sReturn;
 
 	}
+
+	/**
+	 * @param string $sSrc
+	 * @return string
+	 */
+	private function getAudioControls(string $sSrc): string{
+
+		return
+			'
+			<div style="">
+				<audio controls style="height: 100px;">
+					<source src="'.$sSrc.'" type="audio/mpeg">
+				</audio>
+			</div>
+			<div style="margin-bottom:10px;font-size:2em;">'.
+			pathinfo($sSrc, PATHINFO_FILENAME).
+			'</div>';
+
+
+	}
+
 }
