@@ -1,0 +1,18 @@
+{
+	"name"             : "keithdavis/mp3browser",
+	"type"             : "project",
+	"authors"          : [
+		{
+			"name" : "keithdavis",
+			"email": "me@laurinkeithdavis.com"
+		}
+	],
+	"description"      : "Plays MP3 audio files",
+	"minimum-stability": "beta",
+	"require"          : {},
+	"autoload"         : {
+		"psr-4": {
+			"mp3browser\\": "library/mp3browser/"
+		}
+	}
+}
