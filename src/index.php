@@ -1,27 +1,6 @@
 <?php
-echo "<!DOCTYPE html><html><body>";
+require_once dirname(__FILE__)."/library/bootstrap.php";
 
-$oDirectory = new DirectoryIterator("D:/AA Talks - MP3");
+$oIndex = new \mp3browser\Index();
 
-foreach($oDirectory as $oFile){
-
-	if(
-		$oFile->isDir() ||
-		$oFile->isDot()
-	)
-		continue;
-
-	$sSrc = "/mp3files/".$oFile->getFilename();
-
-	echo
-		'<br /><br /><br />
-		<audio controls>
-			<source src="'.$sSrc.'" type="audio/mpeg">
-			</audio>
-			<br />';
-
-	break;
-
-}
-
-echo "</body></html>";
+echo $oIndex->getHTML();
