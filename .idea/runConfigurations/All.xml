@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <CommandLine parameters="--php-ini c:/PHP/devrc" />
+    <TestRunner configuration_file="$PROJECT_DIR$/phpunit/phpunit.xml" directory="$PROJECT_DIR$/phpunit" use_alternative_configuration_file="true" />
+    <method />
+  </configuration>
+</component>

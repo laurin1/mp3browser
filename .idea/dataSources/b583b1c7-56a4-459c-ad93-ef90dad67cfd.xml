@@ -1,0 +1,285 @@
+<dataSource name="MySQL - lakeside@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="lakeside">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="aadallas_meetings" />
+    <schema id="3" name="aadallas_wordpress" />
+    <schema id="4" name="information_schema" />
+    <schema id="5" name="mysql" />
+    <schema id="6" name="performance_schema" />
+    <schema id="7" name="phinxlog" />
+    <schema id="8" name="pride" />
+    <schema id="9" name="pridedal_content" />
+    <schema id="10" name="pride_research" />
+    <schema id="11" name="temp" />
+    <schema id="12" name="test" />
+    <table id="13" parent="1" name="registrants" />
+    <table id="14" parent="1" name="registrantsbad" />
+    <column id="15" parent="13" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="16" parent="13" name="creation_date">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="17" parent="13" name="modification_date">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="18" parent="13" name="modified_by">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <default-expression>'1'</default-expression>
+    </column>
+    <column id="19" parent="13" name="first_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="20" parent="13" name="last_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="21" parent="13" name="badge_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="22" parent="13" name="email_address">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="23" parent="13" name="gender">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="24" parent="13" name="address">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="25" parent="13" name="city">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="26" parent="13" name="state">
+      <data-type>char(2)|0</data-type>
+      <default-expression>'TX'</default-expression>
+    </column>
+    <column id="27" parent="13" name="zip">
+      <data-type>varchar(9)|0</data-type>
+    </column>
+    <column id="28" parent="13" name="phone">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="29" parent="13" name="no_lodging">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="30" parent="13" name="last_attended_year">
+      <data-type>varchar(4)|0</data-type>
+    </column>
+    <column id="31" parent="13" name="speaker_2015">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="32" parent="13" name="paid_2016">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="33" parent="13" name="paid_2016_order">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="34" parent="13" name="personal_response_card_2016">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="35" parent="13" name="paid_2015">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="36" parent="13" name="paid_2015_order">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="37" parent="13" name="paid_2014">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="38" parent="13" name="paid_2013">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="39" parent="13" name="paid_2012">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="40" parent="13" name="postal_mail_2015">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="41" parent="13" name="postal_mail_2013">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="42" parent="13" name="postal_mail_2012">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="43" parent="13" name="special_instructions">
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="44" parent="13" name="status">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'A'</default-expression>
+    </column>
+    <index id="45" parent="13" name="paid_2015_order">
+      <columns>paid_2015_order</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="46" parent="13" name="paid_2016_order">
+      <columns>paid_2016_order</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="47" parent="13" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="48" parent="13" name="paid_2016_order">
+      <columns>paid_2016_order</columns>
+      <underlying-index>paid_2016_order</underlying-index>
+    </key>
+    <key id="49" parent="13" name="paid_2015_order">
+      <columns>paid_2015_order</columns>
+      <underlying-index>paid_2015_order</underlying-index>
+    </key>
+    <column id="50" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(10) unsigned|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="51" parent="14" name="creation_date">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="52" parent="14" name="modification_date">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="53" parent="14" name="modified_by">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <default-expression>'1'</default-expression>
+    </column>
+    <column id="54" parent="14" name="first_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="55" parent="14" name="last_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="56" parent="14" name="badge_name">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="57" parent="14" name="email_address">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="58" parent="14" name="gender">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="59" parent="14" name="address">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="60" parent="14" name="city">
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="61" parent="14" name="state">
+      <data-type>char(2)|0</data-type>
+      <default-expression>'TX'</default-expression>
+    </column>
+    <column id="62" parent="14" name="zip">
+      <data-type>varchar(9)|0</data-type>
+    </column>
+    <column id="63" parent="14" name="phone">
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="64" parent="14" name="no_lodging">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="65" parent="14" name="last_attended_year">
+      <data-type>varchar(4)|0</data-type>
+    </column>
+    <column id="66" parent="14" name="speaker_2015">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="67" parent="14" name="paid_2016">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="68" parent="14" name="paid_2016_order">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="69" parent="14" name="paid_2015">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="70" parent="14" name="paid_2015_order">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="71" parent="14" name="paid_2014">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="72" parent="14" name="paid_2013">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="73" parent="14" name="paid_2012">
+      <data-type>char(1)|0</data-type>
+    </column>
+    <column id="74" parent="14" name="postal_mail_2015">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="75" parent="14" name="postal_mail_2013">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="76" parent="14" name="postal_mail_2012">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'0'</default-expression>
+    </column>
+    <column id="77" parent="14" name="special_instructions">
+      <data-type>varchar(250)|0</data-type>
+    </column>
+    <column id="78" parent="14" name="status">
+      <mandatory>1</mandatory>
+      <data-type>char(1)|0</data-type>
+      <default-expression>'A'</default-expression>
+    </column>
+    <index id="79" parent="14" name="paid_2015_order">
+      <columns>paid_2015_order</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="80" parent="14" name="paid_2016_order">
+      <columns>paid_2016_order</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <key id="81" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="82" parent="14" name="paid_2016_order">
+      <columns>paid_2016_order</columns>
+      <underlying-index>paid_2016_order</underlying-index>
+    </key>
+    <key id="83" parent="14" name="paid_2015_order">
+      <columns>paid_2015_order</columns>
+      <underlying-index>paid_2015_order</underlying-index>
+    </key>
+  </database-model>
+</dataSource>

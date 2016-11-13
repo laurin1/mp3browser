@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="PRIDE" pattern="file:src/library/classes/pride//*" />
+</component>

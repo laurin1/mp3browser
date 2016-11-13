@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Composer" pattern="!file[mp3browser.laurin1.dyndns.org]:*/||file:composer.json||file:composer.lock" />
+</component>

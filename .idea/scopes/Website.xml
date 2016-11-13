@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Website" pattern="!file:src/vendor//*&amp;&amp;!file:.idea//*&amp;&amp;!file:src/js/jquery-1.7.1.min.js&amp;&amp;!file:src/js/jquery-1.7.1.js&amp;&amp;!file:src/js/prototype.js&amp;&amp;!file:src/js/script.js&amp;&amp;!file:src/css/style.ie6.css&amp;&amp;!file:src/css/style.ie7.css&amp;&amp;!file:*error_log" />
+</component>
