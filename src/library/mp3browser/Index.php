@@ -8,53 +8,94 @@ class Index{
 	 */
 	public function getHTML(): string{
 
-		$sReturn = "<!DOCTYPE html><head></head><html><body>";
-
-		if(isset($_GET["src"]) && $_GET["src"])
-			$sReturn .=
-				$this->getAudioControls($_GET["src"]);
-
-		$oDirectory = new \DirectoryIterator("D:/AA Talks - MP3");
-
-		foreach($oDirectory as $oFile){
-
-			if(
-				$oFile->isDir() ||
-				$oFile->isDot() ||
-				$oFile->getExtension() === "nra"
-			)
-				continue;
-
-			$sSrc = "/mp3files/".$oFile->getFilename();
-
-			$sReturn .=
-				'<a href="'.$_SERVER["PHP_SELF"].'?src='.$sSrc.'">'.$oFile->getFilename().'</a><br />';
-
-		}
-
-		$sReturn .= "</body></html>";
-
-		return $sReturn;
+		return
+			"<!DOCTYPE html><head></head><html><body>".
+			$this->getAudioControls().
+			$this->getFilesAndFolders().
+			"</body></html>";
 
 	}
 
 	/**
-	 * @param string $sSrc
 	 * @return string
 	 */
-	private function getAudioControls(string $sSrc): string{
+	private function getAudioControls(): string{
 
-		return
-			'
-			<div style="">
-				<audio controls style="height: 100px;">
-					<source src="'.$sSrc.'" type="audio/mpeg">
-				</audio>
-			</div>
-			<div style="margin-bottom:10px;font-size:2em;">'.
-			pathinfo($sSrc, PATHINFO_FILENAME).
-			'</div>';
+		if(isset($_GET["src"]) && $_GET["src"]){
 
+			$sSrc = $_GET["src"];
+
+			return
+				'
+				<div style="">
+					<audio controls style="height: 100px;">
+						<source src="'.$sSrc.'" type="audio/mpeg">
+					</audio>
+				</div>
+				<div style="margin-bottom:10px;font-size:2em;">'.
+				pathinfo($sSrc, PATHINFO_FILENAME).
+				'</div>';
+
+		}
+
+		return "";
+
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getFilesAndFolders(): string{
+
+		$sBaseFolder = "D:/AA Talks - MP3";
+		$sFolder     =
+			isset($_GET["folder"]) && $_GET["folder"] ?
+				$_GET["folder"] :
+				$sBaseFolder;
+		$oDirectory  = new \DirectoryIterator($sFolder);
+		$sFolders    = "";
+		$sFiles      = "";
+
+		foreach($oDirectory as $oFile){
+
+			if(
+				$oFile->getExtension() === "nra" ||
+				$oFile->getFilename() === ".sync"
+			)
+				continue;
+
+			if($oFile->isDot()){
+
+				if(isset($_GET["folder"]))
+					$sFolders .=
+						'<a href="'.$_SERVER["PHP_SELF"].'?folder='.dirname($sFolder).'">'.
+						$oFile->getFilename().
+						'</a> (DIR)<br />';
+
+				continue;
+
+			}
+
+			if($oFile->isDir()){
+
+				$sFolders .=
+					'<a href="'.$_SERVER["PHP_SELF"].'?folder='.$sFolder."/".$oFile->getFilename().'">'.
+					$oFile->getFilename().
+					'</a> (FOLDER)<br />';
+
+				continue;
+
+			}
+
+			$sFiles .=
+				'<a href="'.$_SERVER["PHP_SELF"].'?src='."/mp3files/".$oFile->getFilename().'">'.
+				$oFile->getFilename().
+				"</a>".
+				"<br />";
+
+		}
+
+		return $sFolders.$sFiles;
 
 	}
 
