@@ -10,7 +10,7 @@ class Index{
 
 		$sReturn = "<!DOCTYPE html><head></head><html><body>";
 
-		if($_GET["src"])
+		if(isset($_GET["src"]) && $_GET["src"])
 			$sReturn .=
 				$this->getAudioControls($_GET["src"]);
 
