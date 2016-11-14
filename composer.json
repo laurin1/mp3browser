@@ -7,7 +7,8 @@
 			"email": "me@laurinkeithdavis.com"
 		}
 	],
-	"description"      : "Plays MP3 audio files based",
+	"description"      : "Displays and allows playback of MP3 audio files",
+	"license"          : "MIT",
 	"minimum-stability": "beta",
 	"require"          : {
 		"fkooman/config": "~1.1"
