@@ -49,7 +49,7 @@ class Index{
 	 */
 	private function getFilesAndFolders(): string{
 
-		$sBaseFolder           = "D:/AA Talks - MP3";
+		$sBaseFolder           = $this->getBaseFolderFromINI();
 		$sFolder               =
 			isset($_GET["folder"]) && $_GET["folder"] ?
 				$_GET["folder"] :
@@ -63,7 +63,10 @@ class Index{
 		foreach($oDirectory as $oFile){
 
 			if(
-				$oFile->getExtension() === "nra" ||
+				(
+					!$oFile->isDir() &&
+					$oFile->getExtension() != "mp3"
+				) ||
 				$oFile->getFilename() === ".sync"
 			)
 				continue;
@@ -149,6 +152,14 @@ class Index{
 
 		return '<a href="#'.$sElementID.'">'.$sElementID.'</a>';
 
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getBaseFolderFromINI(): string{
+
+		return "D:/AA Talks - MP3";
 	}
 
 }
