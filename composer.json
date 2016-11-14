@@ -10,6 +10,7 @@
 	"description"      : "Displays and allows playback of MP3 audio files",
 	"license"          : "MIT",
 	"minimum-stability": "beta",
+	"version"          : "0.1.1-alpha",
 	"require"          : {
 		"fkooman/config": "~1.1"
 	},
