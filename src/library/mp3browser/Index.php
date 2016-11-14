@@ -1,6 +1,9 @@
 <?php
 namespace mp3browser;
 
+use fkooman\Config\IniFile;
+use fkooman\Config\Reader;
+
 class Index{
 
 	/**
@@ -159,7 +162,12 @@ class Index{
 	 */
 	private function getBaseFolderFromINI(): string{
 
-		return "D:/AA Talks - MP3";
+		$oReader =
+			new Reader(
+				new IniFile(dirname(dirname(dirname(dirname(__FILE__))))."/config.ini"));
+
+		return $oReader->v("Settings", "base_folder");
+
 	}
 
 }

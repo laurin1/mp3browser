@@ -53,3 +53,4 @@ composer.phar
 # composer.lock
 
 .sync/
+config.ini
