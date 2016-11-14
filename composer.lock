@@ -1,0 +1,107 @@
+{
+	"_readme"          : [
+		"This file locks the dependencies of your project to a known state",
+		"Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+		"This file is @generated automatically"
+	],
+	"hash"             : "ee6a3e5ab480f1863404bd96585cf67f",
+	"content-hash"     : "d6a8f70e9069e894d5e1cc494ac478f5",
+	"packages"         : [
+		{
+			"name"            : "fkooman/config",
+			"version"         : "1.1.0",
+			"source"          : {
+				"type"     : "git",
+				"url"      : "https://github.com/fkooman/php-lib-config.git",
+				"reference": "92eb45e9c32b9fc41d25824dc47d9462b990085c"
+			},
+			"dist"            : {
+				"type"     : "zip",
+				"url"      : "https://api.github.com/repos/fkooman/php-lib-config/zipball/92eb45e9c32b9fc41d25824dc47d9462b990085c",
+				"reference": "92eb45e9c32b9fc41d25824dc47d9462b990085c",
+				"shasum"   : ""
+			},
+			"require"         : {
+				"ext-spl"     : "*",
+				"php"         : ">=5.4",
+				"symfony/yaml": "^2.7"
+			},
+			"type"            : "library",
+			"autoload"        : {
+				"psr-0": {
+					"fkooman\\Config\\": "src/"
+				}
+			},
+			"notification-url": "https://packagist.org/downloads/",
+			"license"         : [
+				"Apache-2.0"
+			],
+			"authors"         : [
+				{
+					"name" : "François Kooman",
+					"email": "fkooman@tuxed.net",
+					"role" : "Developer"
+				}
+			],
+			"description"     : "Read and write configuration files",
+			"time"            : "2016-08-10 08:27:32"
+		},
+		{
+			"name"            : "symfony/yaml",
+			"version"         : "v2.8.13",
+			"source"          : {
+				"type"     : "git",
+				"url"      : "https://github.com/symfony/yaml.git",
+				"reference": "396784cd06b91f3db576f248f2402d547a077787"
+			},
+			"dist"            : {
+				"type"     : "zip",
+				"url"      : "https://api.github.com/repos/symfony/yaml/zipball/396784cd06b91f3db576f248f2402d547a077787",
+				"reference": "396784cd06b91f3db576f248f2402d547a077787",
+				"shasum"   : ""
+			},
+			"require"         : {
+				"php": ">=5.3.9"
+			},
+			"type"            : "library",
+			"extra"           : {
+				"branch-alias": {
+					"dev-master": "2.8-dev"
+				}
+			},
+			"autoload"        : {
+				"psr-4"                : {
+					"Symfony\\Component\\Yaml\\": ""
+				},
+				"exclude-from-classmap": [
+					"/Tests/"
+				]
+			},
+			"notification-url": "https://packagist.org/downloads/",
+			"license"         : [
+				"MIT"
+			],
+			"authors"         : [
+				{
+					"name" : "Fabien Potencier",
+					"email": "fabien@symfony.com"
+				},
+				{
+					"name"    : "Symfony Community",
+					"homepage": "https://symfony.com/contributors"
+				}
+			],
+			"description"     : "Symfony Yaml Component",
+			"homepage"        : "https://symfony.com",
+			"time"            : "2016-10-21 20:59:10"
+		}
+	],
+	"packages-dev"     : [],
+	"aliases"          : [],
+	"minimum-stability": "beta",
+	"stability-flags"  : [],
+	"prefer-stable"    : false,
+	"prefer-lowest"    : false,
+	"platform"         : [],
+	"platform-dev"     : []
+}
