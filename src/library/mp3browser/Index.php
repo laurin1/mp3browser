@@ -11,6 +11,7 @@ class Index{
 		return
 			"<!DOCTYPE html><head></head><html><body>".
 			$this->getAudioControls().
+			'<h2 id="Top">TABLE OF CONTENTS</h2>'.
 			$this->getFilesAndFolders().
 			"</body></html>";
 
@@ -34,7 +35,8 @@ class Index{
 				</div>
 				<div style="margin-bottom:10px;font-size:2em;">'.
 				pathinfo($sSrc, PATHINFO_FILENAME).
-				'</div>';
+				'</div>'.
+				'<hr />';
 
 		}
 
@@ -47,14 +49,16 @@ class Index{
 	 */
 	private function getFilesAndFolders(): string{
 
-		$sBaseFolder = "D:/AA Talks - MP3";
-		$sFolder     =
+		$sBaseFolder           = "D:/AA Talks - MP3";
+		$sFolder               =
 			isset($_GET["folder"]) && $_GET["folder"] ?
 				$_GET["folder"] :
 				$sBaseFolder;
-		$oDirectory  = new \DirectoryIterator($sFolder);
-		$sFolders    = "";
-		$sFiles      = "";
+		$oDirectory            = new \DirectoryIterator($sFolder);
+		$sFolders              = "";
+		$sFiles                = "";
+		$sCurrentLetterSection = "";
+		$sLetterLinks          = "";
 
 		foreach($oDirectory as $oFile){
 
@@ -66,11 +70,13 @@ class Index{
 
 			if($oFile->isDot()){
 
-				if(isset($_GET["folder"]))
+				if(
+					$sFolder !== $sBaseFolder &&
+					$oFile->getFilename() === ".."
+				)
 					$sFolders .=
 						'<a href="'.$_SERVER["PHP_SELF"].'?folder='.dirname($sFolder).'">'.
-						$oFile->getFilename().
-						'</a> (DIR)<br />';
+						'<-- RETURN</a> (DIR)<br />';
 
 				continue;
 
@@ -87,6 +93,17 @@ class Index{
 
 			}
 
+			$sCurrentLetter = strtoupper(substr($oFile->getFilename(), 0, 1));
+
+			if($sCurrentLetterSection !== $sCurrentLetter){
+
+				$sFiles .= $this->getLetterSectionTitle($sCurrentLetter);
+				$sLetterLinks .= $this->getLetterLink($sCurrentLetter)." ";
+
+				$sCurrentLetterSection = $sCurrentLetter;
+
+			}
+
 			$sFiles .=
 				'<a href="'.$_SERVER["PHP_SELF"].'?src='."/mp3files/".$oFile->getFilename().'">'.
 				$oFile->getFilename().
@@ -95,7 +112,42 @@ class Index{
 
 		}
 
-		return $sFolders.$sFiles;
+		return
+			$sFolders.
+			'<hr />'.
+			'<h3>'.$sLetterLinks.'</h3>'.
+			$sFiles;
+
+	}
+
+	/**
+	 * @param string $sLetter
+	 * @return string
+	 */
+	private function getLetterSectionTitle(string $sLetter): string{
+
+		return
+			'<h3 id="'.$sLetter.'">'.$sLetter." ".$this->getBookmarkLink("Top").'</h3>';
+
+	}
+
+	/**
+	 * @param string $sLetter
+	 * @return string
+	 */
+	private function getLetterLink(string $sLetter): string{
+
+		return $this->getBookmarkLink($sLetter);
+
+	}
+
+	/**
+	 * @param string $sElementID
+	 * @return string
+	 */
+	private function getBookmarkLink(string $sElementID): string{
+
+		return '<a href="#'.$sElementID.'">'.$sElementID.'</a>';
 
 	}
 
