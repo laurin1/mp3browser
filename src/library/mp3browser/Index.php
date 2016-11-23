@@ -6,6 +6,12 @@ use fkooman\Config\Reader;
 
 class Index{
 
+	/** @var string */
+	private $sCurrentFolder = "";
+
+	/** @var string */
+	private $sCurrentSrc = "";
+
 	/**
 	 * @return string
 	 */
@@ -14,7 +20,9 @@ class Index{
 		return
 			"<!DOCTYPE html><head></head><html><body>".
 			$this->getAudioControls().
-			'<h2 id="Top">TABLE OF CONTENTS</h2>'.
+			'<h2 id="Top">'.
+			'<a href="/">TABLE OF CONTENTS</a>'.
+			'</h2>'.
 			$this->getFilesAndFolders().
 			"</body></html>";
 
@@ -25,25 +33,21 @@ class Index{
 	 */
 	private function getAudioControls(): string{
 
-		if(isset($_GET["src"]) && $_GET["src"]){
+		if(!$this->setCurrentSrc())
+			return "";
 
-			$sSrc = $_GET["src"];
+		return
+			'
+			<div style="">
+				<audio controls style="height: 100px;">
+					<source src="'.$this->sCurrentSrc.'" type="audio/mpeg">
+				</audio>
+			</div>
+			<div style="margin-bottom:10px;font-size:2em;">'.
+			pathinfo($this->sCurrentSrc, PATHINFO_FILENAME).
+			'</div>'.
+			'<hr />';
 
-			return
-				'
-				<div style="">
-					<audio controls style="height: 100px;">
-						<source src="'.$sSrc.'" type="audio/mpeg">
-					</audio>
-				</div>
-				<div style="margin-bottom:10px;font-size:2em;">'.
-				pathinfo($sSrc, PATHINFO_FILENAME).
-				'</div>'.
-				'<hr />';
-
-		}
-
-		return "";
 
 	}
 
@@ -54,8 +58,8 @@ class Index{
 
 		$sBaseFolder           = $this->getBaseFolderFromINI();
 		$sFolder               =
-			isset($_GET["folder"]) && $_GET["folder"] ?
-				$_GET["folder"] :
+			$this->setCurrentFolder() ?
+				$this->sCurrentFolder :
 				$sBaseFolder;
 		$oDirectory            = new \DirectoryIterator($sFolder);
 		$sFolders              = "";
@@ -82,7 +86,7 @@ class Index{
 				)
 					$sFolders .=
 						'<a href="'.$_SERVER["PHP_SELF"].'?folder='.dirname($sFolder).'">'.
-						'<-- RETURN</a> (DIR)<br />';
+						'<-- RETURN</a> (DIR)'.$this->getBR();
 
 				continue;
 
@@ -93,7 +97,7 @@ class Index{
 				$sFolders .=
 					'<a href="'.$_SERVER["PHP_SELF"].'?folder='.$sFolder."/".$oFile->getFilename().'">'.
 					$oFile->getFilename().
-					'</a> (FOLDER)<br />';
+					'</a> (FOLDER)'.$this->getBR();
 
 				continue;
 
@@ -111,10 +115,8 @@ class Index{
 			}
 
 			$sFiles .=
-				'<a href="'.$_SERVER["PHP_SELF"].'?src='."/mp3files/".$oFile->getFilename().'">'.
-				$oFile->getFilename().
-				"</a>".
-				"<br />";
+				$this->getMP3Link($sBaseFolder, $oFile).
+				$this->getBR();
 
 		}
 
@@ -168,6 +170,86 @@ class Index{
 
 		return $oReader->v("Settings", "base_folder");
 
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCurrentFolderParameter(): string{
+
+		if(!$this->sCurrentFolder)
+			return "";
+
+		return "folder=".$this->sCurrentFolder."&";
+
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function setCurrentFolder(): bool{
+
+		$this->sCurrentFolder =
+			(
+				isset($_GET["folder"]) &&
+				$_GET["folder"]
+			) ?
+				$_GET["folder"] :
+				"";
+
+		return (bool) $this->sCurrentFolder;
+
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function setCurrentSrc(): bool{
+
+		$this->sCurrentSrc =
+			(
+				isset($_GET["src"]) &&
+				$_GET["src"]
+			) ?
+				$_GET["src"] :
+				"";
+
+		return (bool) $this->sCurrentSrc;
+
+	}
+
+	/**
+	 * @param string             $sBaseFolder
+	 * @param \DirectoryIterator $oFile
+	 * @return string
+	 */
+	private function getMP3Link(string $sBaseFolder, \DirectoryIterator $oFile): string{
+
+		return
+			'<a href="'.$_SERVER["PHP_SELF"].'?'.
+			$this->getCurrentFolderParameter().
+			'src=/mp3files'.
+			(
+			$this->sCurrentFolder ?
+				str_replace(
+					$sBaseFolder,
+					"",
+					$this->sCurrentFolder).
+				"/" :
+				""
+			).
+			$oFile->getFilename().'">'.
+			$oFile->getFilename().
+			"</a>";
+
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getBR(): string{
+
+		return "<br />";
 	}
 
 }
