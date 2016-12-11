@@ -115,7 +115,9 @@ class Index{
 			}
 
 			$sFiles .=
-				$this->getMP3Link($sBaseFolder, $oFile).
+				$this->getMP3Link(
+					$sBaseFolder,
+					$oFile->getFilename()).
 				$this->getBR();
 
 		}
@@ -219,11 +221,11 @@ class Index{
 	}
 
 	/**
-	 * @param string             $sBaseFolder
-	 * @param \DirectoryIterator $oFile
+	 * @param string $sBaseFolder
+	 * @param string $sFileName
 	 * @return string
 	 */
-	private function getMP3Link(string $sBaseFolder, \DirectoryIterator $oFile): string{
+	private function getMP3Link(string $sBaseFolder, string $sFileName): string{
 
 		return
 			'<a href="'.$_SERVER["PHP_SELF"].'?'.
@@ -234,12 +236,11 @@ class Index{
 				str_replace(
 					$sBaseFolder,
 					"",
-					$this->sCurrentFolder).
-				"/" :
-				""
+					$this->sCurrentFolder)."/" :
+				"/"
 			).
-			$oFile->getFilename().'">'.
-			$oFile->getFilename().
+			$sFileName.'">'.
+			$sFileName.
 			"</a>";
 
 	}
