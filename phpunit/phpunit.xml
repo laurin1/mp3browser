@@ -1,0 +1,16 @@
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.0/phpunit.xsd"
+	bootstrap="./cli_phpunit.php"
+	colors="false"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	stopOnFailure="false">
+	<logging>
+		<log type="tap" target="./logging/full.tap"/>
+	</logging>
+	<php>
+		<ini name="memory_limit" value="2048M"/>
+	</php>
+</phpunit>

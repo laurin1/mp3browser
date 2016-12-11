@@ -54,3 +54,4 @@ composer.phar
 
 .sync/
 config.ini
+phpunit/logging
