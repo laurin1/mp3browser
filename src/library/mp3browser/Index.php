@@ -43,8 +43,9 @@ class Index{
 					<source src="'.$this->sCurrentSrc.'" type="audio/mpeg">
 				</audio>
 			</div>
-			<div style="margin-bottom:10px;font-size:2em;">'.
-			pathinfo($this->sCurrentSrc, PATHINFO_FILENAME).
+			<div style="margin-bottom:10px;">'.
+			'<span style="font-size:2em;">'.pathinfo($this->sCurrentSrc, PATHINFO_FILENAME).'</span>'.
+			' - <a href="'.$this->sCurrentSrc.'">Download</a>'.
 			'</div>'.
 			'<hr />';
 
