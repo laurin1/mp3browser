@@ -1,4 +1,5 @@
 <?php
+
 namespace mp3browser;
 
 use fkooman\Config\IniFile;
@@ -96,7 +97,8 @@ class Index{
 			if($oFile->isDir()){
 
 				$sFolders .=
-					'<a href="'.$_SERVER["PHP_SELF"].'?folder='.$sFolder."/".$oFile->getFilename().'">'.
+					'<a href="'.$_SERVER["PHP_SELF"].'?folder='.$sFolder."/".
+					urlencode($oFile->getFilename()).'">'.
 					$oFile->getFilename().
 					'</a> (FOLDER)'.$this->getBR();
 
@@ -108,7 +110,7 @@ class Index{
 
 			if($sCurrentLetterSection !== $sCurrentLetter){
 
-				$sFiles .= $this->getLetterSectionTitle($sCurrentLetter);
+				$sFiles       .= $this->getLetterSectionTitle($sCurrentLetter);
 				$sLetterLinks .= $this->getLetterLink($sCurrentLetter)." ";
 
 				$sCurrentLetterSection = $sCurrentLetter;
@@ -240,7 +242,7 @@ class Index{
 					$this->sCurrentFolder)."/" :
 				"/"
 			).
-			$sFileName.'">'.
+			urlencode($sFileName).'">'.
 			$sFileName.
 			"</a>";
 
