@@ -44,7 +44,7 @@
     <orderEntry type="module-library">
       <library name="PHP" type="php">
         <CLASSES>
-          <root url="file://C:/Program Files/Java/jdk1.8.0_112/jre/bin" />
+          <root url="file://$APPLICATION_HOME_DIR$/jre64/jre/bin" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
@@ -71,7 +71,7 @@
           <root url="file://$MODULE_DIR$/vendor/webmozart/assert" />
         </CLASSES>
         <SOURCES>
-          <root url="file://C:/Program Files/Java/jdk1.8.0_112/jre/bin" />
+          <root url="file://$APPLICATION_HOME_DIR$/jre64/jre/bin" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
           <root url="file://$MODULE_DIR$/vendor/myclabs/deep-copy" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-common" />
