@@ -130,7 +130,7 @@ abstract class View{
 	/**
 	 * @return string
 	 */
-	private function getBR(): string{
+	protected function getBR(): string{
 
 		return "<br />";
 
