@@ -2,7 +2,7 @@
 
 namespace library\mp3browser;
 
-use mp3browser\Index;
+use mp3browser\Views\Index;
 
 class IndexTest extends \PHPUnit_Framework_TestCase{
 
@@ -19,9 +19,9 @@ class IndexTest extends \PHPUnit_Framework_TestCase{
 				"my.mp3");
 
 		\PHPUnit_Framework_Assert::assertSame(
-			'<a href="C:/inetpub/mp3browser.laurin1.dyndns.org/vendor/phpunit/phpunit/phpunit?src=/mp3files/my.mp3">my.mp3</a>',
+			'<a href="C:/inetpub/mp3browser.laurin1.dyndns.org/vendor/phpunit/'.
+			'phpunit/phpunit?src=/mp3files/my.mp3">my.mp3</a>',
 			$sTest);
-
 
 	}
 
