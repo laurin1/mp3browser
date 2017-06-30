@@ -7,9 +7,6 @@
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
 	stopOnFailure="false">
-	<logging>
-		<log type="tap" target="./logging/full.tap"/>
-	</logging>
 	<php>
 		<ini name="memory_limit" value="2048M"/>
 	</php>
